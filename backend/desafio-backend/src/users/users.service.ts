@@ -179,4 +179,33 @@ export class UsersService {
   async findByEmailOptional(email: string): Promise<User | null> {
     return await this.userRepository.findOne({ where: { email } });
   }
+
+  async findByGoogleId(googleId: string): Promise<User | null> {
+    if (!googleId) {
+      return null;
+    }
+    return await this.userRepository.findOne({ where: { googleId } });
+  }
+
+  async updateGoogleId(userId: number, googleId: string): Promise<User> {
+    await this.userRepository.update(userId, { googleId });
+    return await this.findOne(userId);
+  }
+
+  async createGoogleUser(userData: {
+    name: string;
+    email: string;
+    googleId: string;
+    role: UserRole;
+  }): Promise<User> {
+    try {
+      const user = this.userRepository.create({
+        ...userData,
+        password: undefined,
+      });
+      return await this.userRepository.save(user);
+    } catch (error) {
+      throw new BadRequestException('Erro ao criar usuário do Google');
+    }
+  }
 }

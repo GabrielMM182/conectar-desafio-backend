@@ -40,6 +40,11 @@ export class User {
   @MinLength(6, { message: 'Senha deve ter pelo menos 6 caracteres' })
   password?: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true, unique: true })
+  @IsOptional()
+  @IsString()
+  googleId?: string;
+
   @Column({
     type: 'varchar',
     enum: UserRole,

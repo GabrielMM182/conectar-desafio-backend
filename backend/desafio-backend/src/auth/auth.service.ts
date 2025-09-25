@@ -89,4 +89,8 @@ export class AuthService {
   async getProfile(userId: number): Promise<User> {
     return await this.usersService.findOne(userId);
   }
+
+  async googleLogin(user: User): Promise<AuthResponse> {
+    return this.login(user);
+  }
 }

@@ -1,5 +1,30 @@
 # Users API
 
+## Autenticação
+
+### Autenticação Local
+- **POST /auth/register** - Registrar novo usuário
+- **POST /auth/login** - Login com email/senha
+- **GET /auth/profile** - Obter perfil do usuário autenticado
+- **GET /auth/me** - Obter dados do usuário atual
+
+### Autenticação Google OAuth
+- **GET /auth/google** - Iniciar autenticação com Google
+- **GET /auth/google/callback** - Callback do Google OAuth
+
+#### Como usar Google OAuth:
+1. Redirecione o usuário para `GET /auth/google`
+2. O usuário será redirecionado para o Google para autenticação
+3. Após autorização, o Google redirecionará para `/auth/google/callback`
+4. O sistema retornará um JWT token que pode ser usado nas requisições
+
+#### Variáveis de ambiente necessárias:
+```env
+GOOGLE_CLIENT_ID=seu-client-id
+GOOGLE_CLIENT_SECRET=seu-client-secret
+GOOGLE_CLIENT_CALLBACK_URL=http://localhost:3000/auth/google/callback
+```
+
 ## Endpoints
 
 ### POST /users
