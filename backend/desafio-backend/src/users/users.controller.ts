@@ -10,12 +10,16 @@ import {
   ParseIntPipe,
   HttpCode,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService, PaginatedResult } from './users.service';
 import { CreateUserDto, UpdateUserDto, QueryUserDto } from '../dto';
 import { User } from '../entities';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 
 @Controller('users')
+@UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -28,6 +32,11 @@ export class UsersController {
   @Get()
   async findAll(@Query() query: QueryUserDto): Promise<PaginatedResult<User>> {
     return await this.usersService.findAll(query);
+  }
+
+  @Get('me')
+  async getCurrentUser(@CurrentUser() user: User): Promise<User> {
+    return user;
   }
 
   @Get(':id')
