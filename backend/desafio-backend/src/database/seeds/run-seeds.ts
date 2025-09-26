@@ -1,5 +1,6 @@
 import { AppDataSource } from '../../config/data-source';
 import { UserSeeder } from './user.seed';
+import { CustomerSeeder } from './customer.seed';
 
 async function runSeeds() {
   try {
@@ -8,6 +9,7 @@ async function runSeeds() {
     
     console.log('Running seeds...');
     await UserSeeder.run(AppDataSource);
+    await CustomerSeeder.run(AppDataSource);
     
     console.log('Seeds completed successfully!');
   } catch (error) {

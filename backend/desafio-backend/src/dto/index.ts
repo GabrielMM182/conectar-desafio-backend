@@ -4,3 +4,6 @@ export { QueryUserDto } from './query-user.dto';
 export { LoginDto } from './login.dto';
 export { RegisterDto } from './register.dto';
 export { AuthResponseDto } from './auth-response.dto';
+export { CreateCustomerDto } from './create-customer.dto';
+export { UpdateCustomerDto } from './update-customer.dto';
+export { QueryCustomerDto } from './query-customer.dto';
