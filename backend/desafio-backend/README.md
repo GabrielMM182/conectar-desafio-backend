@@ -6,7 +6,6 @@
 - **POST /auth/register** - Registrar novo usuário
 - **POST /auth/login** - Login com email/senha
 - **GET /auth/profile** - Obter perfil do usuário autenticado
-- **GET /auth/me** - Obter dados do usuário atual
 
 ### Autenticação Google OAuth
 - **GET /auth/google** - Iniciar autenticação com Google
