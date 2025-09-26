@@ -208,4 +208,21 @@ export class UsersService {
       throw new BadRequestException('Erro ao criar usuário do Google');
     }
   }
+
+  async updateLastLogin(userId: number): Promise<void> {
+    await this.userRepository.update(userId, { lastLogin: new Date() });
+  }
+
+  async findInactiveUsers(daysInactive: number = 30): Promise<string[]> {
+    const { DateTime } = require('luxon');
+    const cutoffDate = DateTime.now().minus({ days: daysInactive }).toJSDate();
+
+    const inactiveUsers = await this.userRepository
+      .createQueryBuilder('user')
+      .select('user.email')
+      .where('user.lastLogin IS NULL OR user.lastLogin < :cutoffDate', { cutoffDate })
+      .getMany();
+
+    return inactiveUsers.map(user => user.email);
+  }
 }

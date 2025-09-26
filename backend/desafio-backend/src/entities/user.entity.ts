@@ -92,4 +92,11 @@ export class User {
   })
   @UpdateDateColumn({ type: 'datetime' })
   updatedAt: Date;
+
+  @ApiPropertyOptional({
+    description: 'Data do último login do usuário',
+    example: '2024-01-01T00:00:00.000Z'
+  })
+  @Column({ type: 'datetime', nullable: true })
+  lastLogin?: Date;
 }

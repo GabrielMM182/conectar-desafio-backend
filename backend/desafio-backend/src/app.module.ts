@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { User } from './entities';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { NotificationModule } from './notification/notification.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @Module({
@@ -26,6 +27,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     }),
     UsersModule,
     AuthModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [

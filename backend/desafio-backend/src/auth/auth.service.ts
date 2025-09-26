@@ -37,6 +37,8 @@ export class AuthService {
   }
 
   async login(user: User): Promise<AuthResponse> {
+    await this.usersService.updateLastLogin(user.id);
+
     const payload = {
       sub: user.id,
       email: user.email,
