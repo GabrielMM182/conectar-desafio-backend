@@ -22,7 +22,7 @@ export enum CustomerStatus {
   INATIVO = 'inativo',
 }
 
-@Entity('clientes')
+@Entity('customers')
 export class Customer {
   @ApiProperty({
     description: 'ID único do cliente',
